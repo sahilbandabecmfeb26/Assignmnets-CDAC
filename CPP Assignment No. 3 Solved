@@ -1,0 +1,350 @@
+Q.1
+
+
+#include<iostream>
+using namespace std;
+
+class Employee{
+    int id;
+    string name;
+    mutable int accessCount;
+
+public:
+
+    Employee(int i,string n){
+        id = i;
+        name = n;
+        accessCount = 0;
+    }
+
+    
+    Employee(const Employee &e){
+        id = e.id;
+        name = e.name;
+        accessCount = e.accessCount;
+        cout<<"User defined copy constructor called"<<endl;
+    }
+
+    
+    void display() const{
+        accessCount++;   // allowed because mutable
+        cout<<"ID: "<<id<<" Name: "<<name
+            <<" AccessCount: "<<accessCount<<endl;
+    }
+};
+
+int main(){
+
+    Employee e1(101,"Rahul");
+
+    e1.display();
+    e1.display();
+    e1.display();
+
+    Employee e2 = e1; // copy
+
+    e2.display();
+
+}
+
+
+
+
+
+
+
+Q.2
+
+
+#include<iostream>
+#include<fstream>
+using namespace std;
+
+class Student{
+
+    int roll;
+    string name;
+    float marks;
+
+public:
+
+    Student(int r=0,string n="",float m=0){
+        roll=r;
+        name=n;
+        marks=m;
+    }
+
+    ~Student(){
+        cout<<"Destroying student ..."<<endl;
+    }
+
+    void write(ofstream &f){
+        f<<roll<<" "<<name<<" "<<marks<<endl;
+    }
+};
+
+int main(){
+
+    Student s[3] = {
+        Student(1,"Amit",80),
+        Student(2,"Neha",90),
+        Student(3,"Ravi",75)
+    };
+
+    ofstream fout("students.txt");
+
+    for(int i=0;i<3;i++)
+        s[i].write(fout);
+
+    fout.close();
+
+    ifstream fin("students.txt");
+
+    int r; string n; float m;
+
+    while(fin>>r>>n>>m)
+        cout<<r<<" "<<n<<" "<<m<<endl;
+
+}
+
+
+
+
+
+Q.3
+
+
+#include<iostream>
+using namespace std;
+
+class Matrix{
+
+    int a[2][2];
+
+public:
+
+    friend istream& operator>>(istream &in, Matrix &m){
+        for(int i=0;i<2;i++)
+            for(int j=0;j<2;j++)
+                in>>m.a[i][j];
+        return in;
+    }
+
+    friend ostream& operator<<(ostream &out, Matrix &m){
+        for(int i=0;i<2;i++){
+            for(int j=0;j<2;j++)
+                out<<m.a[i][j]<<" ";
+            out<<endl;
+        }
+        return out;
+    }
+
+    Matrix operator+(Matrix m){
+        Matrix temp;
+
+        for(int i=0;i<2;i++)
+            for(int j=0;j<2;j++)
+                temp.a[i][j] = a[i][j] + m.a[i][j];
+
+        return temp;
+    }
+
+    bool operator==(Matrix m){
+        for(int i=0;i<2;i++)
+            for(int j=0;j<2;j++)
+                if(a[i][j]!=m.a[i][j])
+                    return false;
+        return true;
+    }
+};
+
+int main(){
+
+    Matrix m1,m2,m3;
+
+    cin>>m1>>m2;
+
+    m3 = m1 + m2;
+
+    cout<<m3;
+
+    if(m1==m2)
+        cout<<"Matrices Equal"<<endl;
+    else
+        cout<<"Matrices Not Equal"<<endl;
+
+}
+
+
+
+
+
+
+
+
+Q.4
+
+
+#include<iostream>
+using namespace std;
+
+class DivideByZero {};
+
+int divide(int a,int b) throw(DivideByZero){
+
+    if(b==0)
+        throw DivideByZero();
+
+    return a/b;
+}
+
+int main(){
+
+    try{
+
+        try{
+
+            cout<<divide(10,0);
+
+        }
+        catch(DivideByZero){
+
+            cout<<"Inside inner catch"<<endl;
+            throw;
+        }
+
+    }
+    catch(DivideByZero){
+
+        cout<<"Handled in outer catch"<<endl;
+
+    }
+
+}
+
+
+
+
+
+
+Q.5
+
+
+#include<iostream>
+using namespace std;
+
+class Number;
+
+class Inspector{
+public:
+    void show(Number &n);
+};
+
+class Number{
+
+    int value;
+
+public:
+
+    Number(int v){
+        value=v;
+    }
+
+    friend bool operator>(Number a,Number b);
+    friend class Inspector;
+
+    Number& operator++(){
+        value++;
+        return *this;
+    }
+
+    Number operator++(int){
+        Number temp=*this;
+        value++;
+        return temp;
+    }
+
+    Number& operator=(Number n){
+        value=n.value;
+        return *this;
+    }
+
+};
+
+bool operator>(Number a,Number b){
+    return a.value>b.value;
+}
+
+void Inspector::show(Number &n){
+    cout<<"Value: "<<n.value<<endl;
+}
+
+int main(){
+
+    Number n1(10), n2(20);
+
+    ++n1;
+    n2++;
+
+    Inspector i;
+    i.show(n1);
+
+    if(n1>n2)
+        cout<<"n1 greater"<<endl;
+
+}
+
+
+
+
+
+
+Q.6
+
+
+#include<iostream>
+using namespace std;
+
+class Vector{
+
+    int *arr;
+    int size;
+
+public:
+
+    Vector(int s){
+        size=s;
+        arr=new int[size];
+    }
+
+    int& operator[](int index){
+        return arr[index];
+    }
+
+    int operator()(){
+        int sum=0;
+        for(int i=0;i<size;i++)
+            sum+=arr[i];
+        return sum;
+    }
+
+};
+
+int main(){
+
+    Vector v(5);
+
+    v[0]=10;
+    v[1]=20;
+    v[2]=50;
+
+    cout<<"Sum = "<<v()<<endl;
+
+}
+
+
+
+
+
+
+
