@@ -1,0 +1,33 @@
+                           
+
+
+                    Introducing Relational Databases
+
+
+
+1) Which field of the Customers table is the primary key?
+Ans- CustomerID of the customer table is the primary key.
+
+
+
+
+2) What is the 4th column of the Customers table?
+Ans- 4th table of the customers table is Address.
+
+
+
+
+3) What is another word for row? For column?
+Ans- Row - Record
+     Column - Field
+
+
+
+
+4) Why isn’t it possible to see the first five rows of a table?
+Ans- In relational database a table doesn't guarantee order of rows and rows are unordered.
+
+
+
+
+

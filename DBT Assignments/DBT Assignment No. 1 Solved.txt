@@ -1,0 +1,265 @@
+Last login: Thu Mar 12 15:33:02 on ttys000
+sahil@sahils-MacBook-Air ~ % version --mysql
+zsh: command not found: version
+sahil@sahils-MacBook-Air ~ % version --mysql;
+zsh: command not found: version
+sahil@sahils-MacBook-Air ~ % /usr/local/mysql/bin/mysql --version
+/usr/local/mysql/bin/mysql  Ver 9.5.0 for macos15 on arm64 (MySQL Community Server - GPL)
+sahil@sahils-MacBook-Air ~ % /usr/local/mysql/bin/mysql -u sahil -p
+Enter password: 
+ERROR 1045 (28000): Access denied for user 'sahil'@'localhost' (using password: YES)
+sahil@sahils-MacBook-Air ~ % /usr/local/mysql/bin/mysql -u sahil -p
+Enter password: 
+ERROR 1045 (28000): Access denied for user 'sahil'@'localhost' (using password: YES)
+sahil@sahils-MacBook-Air ~ % /usr/local/mysql/bin/mysql -u root -p 
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 13
+Server version: 9.5.0 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2025, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> select user();
++----------------+
+| user()         |
++----------------+
+| root@localhost |
++----------------+
+1 row in set (0.000 sec)
+
+mysql> create databases kharghar;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'databases kharghar' at line 1
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| demo               |
+| information_schema |
+| kharghar           |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+6 rows in set (0.002 sec)
+
+mysql> use kharghar;
+Database changed
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| demo               |
+| information_schema |
+| kharghar           |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+6 rows in set (0.002 sec)
+
+mysql> select user();
++----------------+
+| user()         |
++----------------+
+| root@localhost |
++----------------+
+1 row in set (0.000 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| demo               |
+| information_schema |
+| kharghar           |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+6 rows in set (0.001 sec)
+
+mysql> use kharghar;
+Database changed
+mysql> create table salespeople (
+    -> Snum      int(4)
+    -> Sname     varchar(10)
+    -> City      varchar(10)
+    -> Comm      FLOAT(3,2)
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Sname     varchar(10)
+City      varchar(10)
+Comm      FLOAT(3,2)
+)' at line 3
+mysql> create table salespeople (
+    ->     -> Snum      int(4)
+    ->     -> Sname     varchar(10)
+    ->     -> City      varchar(10)
+    ->     -> Comm      FLOAT(3,2)
+    ->     
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-> Snum      int(4)
+    -> Sname     varchar(10)
+    -> City      varchar(10)
+  ' at line 2
+mysql> create table salespeople (
+    -> Snum      int(4),
+    -> Sname     varchar(10),
+    -> City      varchar(10),
+    -> Comm      FLOAT(3,2),
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 6
+mysql> create table salespeople (
+    -> Snum int (4),
+    -> Sname varchar(10),
+    -> City varchar(10),
+    -> Comm float(3,2),
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 6
+mysql> CREATE TABLE SALESPEOPLE (
+    -> Cnum INT(4),
+    -> Cname VARCHAR(10),
+    -> City VARCHAR(10),
+    -> Comm FLOAT(3,2)
+    -> );
+Query OK, 0 rows affected, 2 warnings (0.012 sec)
+
+mysql> CREATE TABLE CUSTOMERS (
+    -> Cnum INT(4),
+    -> Sname VARCHAR(10),
+    -> City VARCHAR(10),
+    -> Rating INT(4),
+    -> Snum INT(4)
+    -> );
+Query OK, 0 rows affected, 3 warnings (0.009 sec)
+
+mysql> CREATE TABLE ORDERS (
+    -> Onum INT (4),
+    -> Amt FLOAT(7,2),
+    -> Odate DATE,
+    -> Cnum INT(4),
+    -> Snum INT(4)
+    -> );
+Query OK, 0 rows affected, 4 warnings (0.011 sec)
+
+mysql> INSERT INTO SALESPEOPLE VALUES
+    -> (1001,'Peel',London',0.12),
+    '> (1002,'serres','San Jose',0.13),
+    '> (1004,'motika','London',0.11),
+    '> (1007,'Rifkin','Barcelona',0.15),
+    '> (1003,'Axelrod','New York',0.10);
+    '> 
+    '> 
+    '> 
+    '> );
+    '> )
+    '> 
+    '> INSERT INTO SALESPEOPLE VALUES
+    '>     -> (1001,'Peel',London',0.12),
+    ->     '> (1002,'serres','San Jose',0.13),
+    '>     '> (1004,'motika','London',0.11),
+    ->     '> (1007,'Rifkin','Barcelona',0.15),
+    '>     '> (1003,'Axelrod','New York',0.10)
+    -> INSERT INTO SALESPEOPLE VALUES
+    -> (1001,'Peel','London',0.12),
+    -> (1002,'Serres','San Jose',0.13),
+    -> (1004,'Motika','London',0.11),
+    -> (1007,'Rifkin','Barcelona',0.15),
+    -> (1003,'Axelrod','New York',0.10);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '',0.12),
+(1002,'serres','San Jose',0.13),
+(1004,'motika','London',0.11),
+(1007,'' at line 2
+mysql> INSERT INTO SALESPEOPLE VALUES
+    -> (1001,'Peel','London',0.12),
+    -> (1002,'Serres','San Jose',0.13),
+    -> (1004,'Motika','London',0.11),
+    -> (1007,'Rifkin','Barcelona',0.15),
+    -> (1003,'Axelrod','New York',0.10);
+Query OK, 5 rows affected (0.007 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO CUSTOMERS VALUES
+    -> (2001,'Holfman','London',100,1001),
+    -> (2002,'Giovanni','Rome',200,1003),
+    -> (2003,'Liu','San Jose',200,1002),
+    -> (2004,'Grass','Berlin',300,1002),
+    -> (2006,'Clemens','London',100,1001),
+    -> (2008,'Cisneros','San Jose',300,1007),
+    -> (2007,'Pereira','Rome',100,1004);
+Query OK, 7 rows affected (0.005 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO ORDERS VALUES
+    -> (3001,16.69,'1990-10-03',2008,1007),
+    -> (3003,767.19,'1990-10-03',2002,1001),
+    -> (3002,1900.10,'1990-10-03',2002,1004),
+    -> (3005,5160.45,'1990-10-03',2003,1002),
+    -> (3006,1098.16,'1990-10-03',2008,1007),
+    -> (3009,1713.23,'1990-10-04',2002,1003),
+    -> (3007,75.75,'1990-10-04',2004,1002),
+    -> (3008,4723.00,'1990-10-05',2006,1001),
+    -> (3010,1309.95,'1990-10-06',2004,1002),
+    -> (3011,9891.88,'1990-10-06',2006,1001);
+Query OK, 10 rows affected (0.003 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+mysql> SHOW TABLES;
++--------------------+
+| Tables_in_kharghar |
++--------------------+
+| CUSTOMERS          |
+| ORDERS             |
+| SALESPEOPLE        |
++--------------------+
+3 rows in set (0.002 sec)
+
+mysql> SELECT * FROM SALESPEOPLE;
++------+---------+-----------+------+
+| Cnum | Cname   | City      | Comm |
++------+---------+-----------+------+
+| 1001 | Peel    | London    | 0.12 |
+| 1002 | Serres  | San Jose  | 0.13 |
+| 1004 | Motika  | London    | 0.11 |
+| 1007 | Rifkin  | Barcelona | 0.15 |
+| 1003 | Axelrod | New York  | 0.10 |
++------+---------+-----------+------+
+5 rows in set (0.001 sec)
+
+mysql> SELECT * FROM CUSTOMERS;
++------+----------+----------+--------+------+
+| Cnum | Sname    | City     | Rating | Snum |
++------+----------+----------+--------+------+
+| 2001 | Holfman  | London   |    100 | 1001 |
+| 2002 | Giovanni | Rome     |    200 | 1003 |
+| 2003 | Liu      | San Jose |    200 | 1002 |
+| 2004 | Grass    | Berlin   |    300 | 1002 |
+| 2006 | Clemens  | London   |    100 | 1001 |
+| 2008 | Cisneros | San Jose |    300 | 1007 |
+| 2007 | Pereira  | Rome     |    100 | 1004 |
++------+----------+----------+--------+------+
+7 rows in set (0.001 sec)
+
+mysql> SELECT * FROM ORDERS;
++------+---------+------------+------+------+
+| Onum | Amt     | Odate      | Cnum | Snum |
++------+---------+------------+------+------+
+| 3001 |   16.69 | 1990-10-03 | 2008 | 1007 |
+| 3003 |  767.19 | 1990-10-03 | 2002 | 1001 |
+| 3002 | 1900.10 | 1990-10-03 | 2002 | 1004 |
+| 3005 | 5160.45 | 1990-10-03 | 2003 | 1002 |
+| 3006 | 1098.16 | 1990-10-03 | 2008 | 1007 |
+| 3009 | 1713.23 | 1990-10-04 | 2002 | 1003 |
+| 3007 |   75.75 | 1990-10-04 | 2004 | 1002 |
+| 3008 | 4723.00 | 1990-10-05 | 2006 | 1001 |
+| 3010 | 1309.95 | 1990-10-06 | 2004 | 1002 |
+| 3011 | 9891.88 | 1990-10-06 | 2006 | 1001 |
++------+---------+------------+------+------+
+10 rows in set (0.000 sec)
+
+mysql> 
