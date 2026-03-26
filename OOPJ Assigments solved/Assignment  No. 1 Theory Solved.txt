@@ -1,0 +1,213 @@
+                                
+
+
+
+              				Java Assignment: 1
+
+
+1. What is Java?
+Ans- Java is high level, Object-oriented programming language which is used to build applications.
+
+
+
+2. Is Java platform dependent or independent?
+Ans- Java is a Platform independent language.
+
+
+
+3. What is JVM?
+Ans- JVM is a Java Virtual Machine which is used to run a java bytecode on any system.
+
+
+
+4. What is JDK and JRE?
+Ans- JDK is a Java Development Kit which includes JRE and Development tools.
+     JRE is Java Runtime environment which means JVM and libraries.
+
+
+
+5. Why is Java called “Write Once, Run Anywhere”?
+Ans- We can run Java code on any system with the help of JVM and because of that Java called "Write Once,            
+     Run Anywhere.
+
+
+
+6. What is a class in Java?
+Ans- Class is a blueprint or template which is use to create objects.
+
+
+
+7. What is an object?
+Ans- Object is an instance of a class.
+
+
+
+8. What is the main method in Java?
+Ans- main method is an entry point of java program.
+     Public static void main(String[] args)
+
+
+
+9. What is the use of System.out.println()?
+Ans- It is used to prints output to console.
+
+
+
+11. What are data types in Java?
+Ans- int, float, char, these are the data types in java.
+
+
+
+12. Give examples of primitive data types.
+Ans- Primitive data types- int, float, double, byte, short, long, char, boolean.
+
+
+
+13. What is a variable?
+Ans- variable is a container which is used to stored data.
+
+
+
+14. How do you declare a variable in Java?
+Ans- Declaration- int a = 5;
+
+
+
+15. What is the difference between int and float?
+Ans- int- stores whole numbers only (int a = 10;)
+     Float- stores numbers with decimal points (float b = 10.5;)
+
+
+
+16. What is type casting?
+Ans- converting one data type into another is called type casting.
+
+
+
+17. What is the default value of int?
+Ans- Default value of int is 0.
+
+
+
+18. What is a keyword in Java?
+Ans- Keyword is a reserved word in java(e.g., int, class)
+
+
+
+19. Can we use reserved keywords as variable names?
+Ans- No. We can't use reserved keywords as variable.
+
+
+
+20. What is the difference between = and ==?
+Ans- = means assignment
+     == means comparison
+
+
+
+21. What is an if statement?
+Ans- if statement is called as Decision-making statement.
+
+
+
+22. Difference between if and switch?
+Ans- if statement- Can handle any condition (>, <, &&) and good for complex conditions.
+     Switch statement- Works with specific values only and good for multiple fixed choices.
+
+
+
+23. What is a loop?
+Ans- A loop is programming concept used to repeat set of instructions multiple times until a certain
+     condition is met.
+
+
+24. Types of loops in Java?
+Ans-Types of loops-
+    1. For loop
+    2. While loop
+    3. Do-While loop
+
+
+
+25. Difference between for loop and while loop?
+Ans- Usage- For loop is used when the number of iterations is known
+            While loop is used when the number of iterations is unknown.    
+     Control variable- Usually declared inside for loop
+ 		       Usually declared outside while loop.
+
+
+
+
+26. What is break statement?
+Ans- break stops the execution of a loop before it finishes normally.
+
+
+
+
+27. What is continue statement?
+Ans- The continue statement in Java is used to skip the current iteration of a loop and move to the next iteration.
+
+
+
+
+28. What will happen if we don’t write the main method?
+Ans- The program will compile successfully, but it will not run.
+
+
+
+29. Can we run a Java program without class?
+Ans- No, Java is a class-based language. We can't run a java program without class.
+
+
+
+30. What happens if we don’t compile a Java program?
+Ans- The program cannot be executed.
+
+
+
+31. Can a variable change its data type?
+Ans- No. Once a variable is declared, its data type cannot change.
+
+
+
+32. What is the size of int in Java?
+Ans- The size of int = 4 bytes (32 bits)
+
+
+
+33. Why Java does not support pointers directly?
+Ans- 1.for Security(prevents direct memory access)
+     2.Simplicity (easier to learn and use)
+     3.Avoids errors like memory corruption.
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
