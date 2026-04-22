@@ -1,0 +1,251 @@
+Q.1
+
+
+#include<iostream>
+using namespace std;
+
+class Box{
+    int length, width, height;
+
+public:
+
+    
+    Box(int l, int w, int h){
+        length = l;
+        width = w;
+        height = h;
+    }
+
+    
+    void setDimensions(int length, int width, int height){
+        this->length = length;
+        this->width = width;
+        this->height = height;
+    }
+
+    int volume(){
+        return length * width * height;
+    }
+};
+
+int main(){
+
+    
+    Box b1(2,3,4);
+    cout<<"Volume (constructor): "<<b1.volume()<<endl;
+
+    // Assignment using function
+    b1.setDimensions(5,6,7);
+    cout<<"Volume (after assignment): "<<b1.volume()<<endl;
+
+}
+
+
+
+
+
+
+
+Q.2
+
+
+#include<iostream>
+using namespace std;
+
+void swapByValue(int a, int b){
+    int temp = a;
+    a = b;
+    b = temp;
+}
+
+void swapByAddress(int *a, int *b){
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+void swapByReference(int &a, int &b){
+    int temp = a;
+    a = b;
+    b = temp;
+}
+
+int main(){
+
+    int x = 10;
+    int y = 20;
+
+    swapByValue(x,y);
+    cout<<"After swapByValue: "<<x<<" "<<y<<endl;
+
+    swapByAddress(&x,&y);
+    cout<<"After swapByAddress: "<<x<<" "<<y<<endl;
+
+    swapByReference(x,y);
+    cout<<"After swapByReference: "<<x<<" "<<y<<endl;
+
+}
+
+
+
+
+
+
+Q.3
+
+
+#include<iostream>
+using namespace std;
+
+int main(){
+
+    int num = 10;
+
+    int *ptr = &num;   // pointer
+    int &ref = num;    // reference
+
+    cout<<"Original value: "<<num<<endl;
+
+    *ptr = 20;
+    cout<<"After pointer change: "<<num<<endl;
+
+    ref = 30;
+    cout<<"After reference change: "<<num<<endl;
+
+}
+
+
+
+
+
+
+
+
+Q.4
+
+
+#include<iostream>
+using namespace std;
+
+int main(){
+
+    int *arr = new int[5];
+
+    cout<<"Enter 5 numbers:"<<endl;
+
+    for(int i=0;i<5;i++){
+        cin>>arr[i];
+    }
+
+    cout<<"Values:"<<endl;
+
+    for(int i=0;i<5;i++){
+        cout<<arr[i]<<" ";
+    }
+
+    delete[] arr;
+
+}
+
+
+
+
+
+
+
+Q.5
+
+
+#include<iostream>
+using namespace std;
+
+class Student{
+
+    int rollNo;
+    string name;
+    float marks;
+
+public:
+
+    // Default constructor
+    Student(){
+        rollNo = 0;
+        name = "Unknown";
+        marks = 0;
+    }
+
+    // Parameterized constructor
+    Student(int r,string n,float m){
+        rollNo = r;
+        name = n;
+        marks = m;
+    }
+
+    // Using this pointer
+    Student(int rollNo,string name){
+        this->rollNo = rollNo;
+        this->name = name;
+    }
+
+    void display(){
+        cout<<rollNo<<" "<<name<<" "<<marks<<endl;
+    }
+
+};
+
+int main(){
+
+    Student s1;
+    Student s2(1,"Rahul",85);
+    Student s3(2,"Anita",90);
+
+    s1.display();
+    s2.display();
+    s3.display();
+
+}
+
+
+
+
+
+
+
+
+Q.6
+
+
+#include<iostream>
+using namespace std;
+
+class Employee{
+
+    const int employeeId;
+    string name;
+    float salary;
+
+public:
+
+    Employee(int id,string n,float s) : employeeId(id), name(n), salary(s) {}
+
+    void display(){
+        cout<<"ID: "<<employeeId<<endl;
+        cout<<"Name: "<<name<<endl;
+        cout<<"Salary: "<<salary<<endl;
+    }
+
+};
+
+int main(){
+
+    Employee e1(101,"Ravi",50000);
+    e1.display();
+
+}
+
+
+
+
+
+
+

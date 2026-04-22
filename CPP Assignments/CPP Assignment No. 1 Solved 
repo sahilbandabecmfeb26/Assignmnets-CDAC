@@ -1,0 +1,241 @@
+Q.1
+
+
+#include<stdio.h>
+
+int main(){
+    float m1 = 50;
+    float m2 = 50;
+    float m3 = 50;
+    float m4 = 50;
+    float m5 = 50;
+
+    float total = m1+m2+m3+m4+m5;
+
+    float percentage = (total/500)*100;
+    printf("%f\n%f\n%f\n%f\n%f\n",m1,m2,m3,m4,m5);
+    printf("Total marks : %f \n" , total);
+    printf("Total percentage : %f \n" , percentage);
+    printf(percentage>= 75 ? "A" : percentage >= 60 ? "B" : percentage >= 45 ? "C" : "fail");
+}
+
+
+
+
+
+
+
+Q.2
+
+
+#include<stdio.h>
+
+int main()
+{
+    int n = 10; //4
+    short int s = 1; //2
+    long int l = 45;//4
+    unsigned int u = 2; //4
+    float f = 1.2; //4
+    double d = 44;  //8
+    long double ld = 44; //12
+    char c = 'a';  //1
+
+    printf("int = %d\n" ,sizeof(n));
+    printf("short int = %d\n",sizeof(s));
+    printf("lond int = %d\n" , sizeof(l));
+    printf("unsigned int +%d\n",sizeof(u));
+    printf("float = %d\n",sizeof(f));
+    printf("double = %d\n", sizeof(d));
+    printf("long double = %d\n", sizeof(ld));
+    printf("char = %d",sizeof(c));
+
+}
+
+
+
+
+
+Q.3
+
+
+#include<stdio.h>
+
+float celciousToFahrenheit(float c)
+{
+    return (c * (9.0/5.0)) +32;
+}
+float fahrenheitToCelcious(float f)
+{
+    return (f-32) * 5/9;
+}
+
+int main()
+{
+    float temp1 = 60;
+    float temp = 40;
+
+    float c = fahrenheitToCelcious(temp1);
+    float f = celciousToFahrenheit(temp);
+    printf("%.2f\n",c);
+    printf("%.2f",f);
+}
+
+
+
+
+
+
+Q.4
+
+
+#include<iostream>
+using namespace std;
+void findMinMax(int a, int b , int c , int &lo , int &hi);
+int main()
+{
+    int a = 10;
+    int b = 20;
+    int c = 30;
+    int lo;
+    int hi;
+
+    findMinMax(a,b,c,lo,hi);
+    // printf("%d\n",hi);
+    // printf("%d",lo);
+
+    cout<<"higest"<<hi<<endl;
+    cout<<"lowest"<<lo;
+}
+void findMinMax(int a, int b , int c , int &lo , int &hi){
+    hi= a>b ? ((a>c)? a:c) :((b>c)?b:c);
+    lo = a<b ? ((a<c)?a:c) : ((b<c)?b:c);
+}
+
+
+
+
+
+Q.5
+
+
+#include<iostream>
+using namespace std;
+
+void doubleIt(int &n)
+{
+    n = n*2;
+    cout<<"inside of fun double it:"<<n <<endl;
+}
+int main()
+{
+    int n = 7;
+    cout<<"before fun call:"<<n<<endl;
+    doubleIt(n);
+
+    cout<<"in main after call:"<<n;
+}
+
+
+
+
+
+Q.6
+
+
+#include<iostream>
+using namespace std;
+
+int main()
+{
+    int x = 10;
+    int y = 20;
+    int z = 30;
+
+    int *px = &x;
+    int *py = &y;
+    int *pz = &z;
+    cout<<"before swapping :"<<x<<" "<<y <<" "<<z<<endl;
+    cout<<"before swapping add :"<<px<<" "<<py <<" "<<pz<<endl;
+    int temp = *px;
+    *px = *pz;
+    *pz = temp;
+
+    cout<<"After swapping :"<<x<<" "<<y <<" "<<z<<endl;
+    cout<<"After swapping add :"<<px<<" "<<py <<" "<<pz<<endl;
+    cout<<sizeof(py);
+}
+
+
+
+
+
+
+Q.7
+
+
+#include<iostream>
+using namespace std;
+
+const float PI = 3.14159;
+float circleArea(float radius)
+{
+    return PI * radius*radius;
+}
+float circlePerimeter(float radius)
+{
+    return 2* PI *radius;
+}
+int main()
+{
+    float radius = 7.0;
+    float area = circleArea(radius);
+    cout<<"Area of circle :" << area<<endl;
+    float perimeter = circlePerimeter(radius);
+    cout<<"Perimeter of circle :" << perimeter<<endl;
+}
+
+
+
+
+
+
+Q.8
+
+
+#include<iostream>
+using namespace std;
+
+ 
+int absolute(int n)
+{
+    n = n >= 0 ? n : n*(-1);
+    return n;
+}
+int clamp(int val, int lo, int hi)
+{
+    val = lo > val ? lo : val;
+    val = val > hi ?hi : val;
+
+    return val;
+}
+int main()
+{
+    int n  = -10;
+    cout<<"n=:"<<n<<endl;
+    int abs_n = absolute(n);
+    cout<<"absolute n :"<<abs_n<<endl;
+
+    int val = -15;
+    int lo = -10;
+    int hi  = 10;
+
+    val = clamp(val,lo,hi);
+    cout<<val;
+}
+
+
+
+
+
+
