@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Budget Tracker (Rupees) | Assignment 6</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            padding: 20px;
+        }
+        .container {
+            max-width: 700px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        input, button {
+            margin: 8px 0;
+            padding: 10px;
+            width: 100%;
+        }
+        button {
+            background: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        li {
+            margin: 8px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        <h1>Budget Tracker</h1>
+        
+        <div class="form-group">
+            <input type="text" id="desc" placeholder="Expense Description (e.g., Lunch)">
+            <input type="number" id="amt" placeholder="Amount (₹)">
+            <input type="date" id="date">
+        </div>
+
+        <div class="btn-group">
+            <button class="btn-add" onclick="handleAdd()">Add Expense</button>
+            <button class="btn-filter" onclick="filterHighExpenses()">Show > ₹500 Only</button>
+            <button style="background:#ea4335; color:white;" onclick="initApp()">Reset</button>
+        </div>
+
+        <div id="success-msg" class="msg"></div>
+        <div id="expense-list" style="margin-top: 20px;"></div>
+
+        <div class="summary">
+            Total Expense: ₹<span id="total-val">0</span>
+        </div>
+    </div>
+
+    <script>
+        // 1. Variables: State variables
+        let expenses = []; 
+        const MIN_THRESHOLD = 500; // Updated filter threshold for Rupees
+
+        // 9. Closures: Maintaining state
+        function createTotalTracker() {
+            let runningTotal = 0;
+            return function(amount) {
+                runningTotal += amount;
+                return runningTotal;
+            };
+        }
+        let updateRunningTotal;
+
+        // 2 & 6. Functions & Spread: Managing expense list[cite: 7]
+        function addExpense(callback, ...newEntries) {
+            expenses = [...expenses, ...newEntries];
+            callback("Successfully added expense!");
+            displayExpenses(expenses);
+        }
+
+        // 2 & 5. Arrow Function & Reduce: Calculate total[cite: 7]
+        const calculateTotal = (arr) => arr.reduce((sum, item) => sum + Number(item.amount), 0);
+
+        // 4 & 5. Destructuring & Map: Display items[cite: 7]
+        function displayExpenses(dataArray) {
+            const listDiv = document.getElementById('expense-list');
+            listDiv.innerHTML = "";
+
+            dataArray.map(item => {
+                const { description, amount, date } = item;
+                const div = document.createElement('div');
+                div.className = 'expense-item';
+                // Updated currency symbol to ₹
+                div.innerHTML = `<span>${description} (${date})</span> <span>₹${amount}</span>`;
+                listDiv.appendChild(div);
+            });
+
+            document.getElementById('total-val').innerText = calculateTotal(expenses);
+        }
+
+        // 5. Array Methods: Filter[cite: 7]
+        function filterHighExpenses() {
+            const highOnes = expenses.filter(e => e.amount > MIN_THRESHOLD);
+            displayExpenses(highOnes);
+        }
+
+        function handleAdd() {
+            const description = document.getElementById('desc').value;
+            const amount = document.getElementById('amt').value;
+            const date = document.getElementById('date').value;
+
+            if(!description || !amount) return alert("Please fill details");
+
+            // 3. JavaScript Objects: Representing expense[cite: 7]
+            const entry = { description, amount, date };
+            
+            addExpense((msg) => {
+                document.getElementById('success-msg').innerText = msg;
+                setTimeout(() => document.getElementById('success-msg').innerText = "", 2000);
+            }, entry);
+        }
+
+        // 8. Promises: Simulating fetch[cite: 7]
+        function getInitialData() {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    resolve([
+                        { description: "Grocery", amount: 1200, date: "2026-05-01" },
+                        { description: "Electricity", amount: 2500, date: "2026-05-02" }
+                    ]);
+                }, 1000);
+            });
+        }
+
+        // 10. Async/Await: Fetching initial state[cite: 7]
+        async function initApp() {
+            updateRunningTotal = createTotalTracker();
+            const data = await getInitialData();
+            expenses = [...data];
+            displayExpenses(expenses);
+        }
+
+        window.onload = initApp;
+    </script>
+</body>
+</html>

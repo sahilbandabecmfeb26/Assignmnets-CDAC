@@ -1,0 +1,14 @@
+.card {
+    transition: transform 0.2s;
+    height: 100%;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+#errorMessage {
+    max-width: 600px;
+    margin: 0 auto 20px auto;
+}
